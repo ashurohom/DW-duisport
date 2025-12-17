@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_onboarding_user,res.partner.onboarding.user,model_res_partner_onboarding,base.group_user,1,1,1,0
+access_res_partner_onboarding_manager,res.partner.onboarding.manager,model_res_partner_onboarding,sales_team.group_sale_manager,1,1,1,1

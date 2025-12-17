@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_engineering_team_tree" model="ir.ui.view">
+        <field name="name">engineering.team.tree</field>
+        <field name="model">engineering.team</field>
+        <field name="arch" type="xml">
+            <tree string="Engineering Analysis">
+                <field name="lead_id"/>
+                <field name="partner_id"/>
+                <field name="engineer_id"/>
+                <field name="state"/>
+                <field name="date_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_engineering_team_form" model="ir.ui.view">
+        <field name="name">engineering.team.form</field>
+        <field name="model">engineering.team</field>
+        <field name="arch" type="xml">
+            <form string="Engineering Analysis">
+                <header>
+                    <button name="action_analysis_done"
+                            type="object"
+                            string="Analysis Done"
+                            class="btn-primary"
+                            groups="dw_engineering_product.group_engineering_team"
+                            invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="lead_id"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="engineer_id"/>
+                        <field name="date_done" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Engineering Details">
+                            <group>
+                                <!-- <field name="cost_price"/> -->
+                                <!-- <field name="cost_price_mgnt" groups="dw_engineering_product.group_management_team"/> -->
+                                <field name="design_ref" filename="design_ref_filename"/>
+                                <field name="estimation_time"/>
+                                <field name="engineering_notes"/>
+                            </group>
+                        </page>
+
+                        <page string="Products">
+                            <!-- Remove group to use full width -->
+                            <field name="product_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="cost_price"/>
+                                    <field name="cost_price_m" groups="dw_engineering_product.group_management_team"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Bill of Materials">
+                            <!-- Remove group to use full width -->
+                            <field name="bom_ids" nolabel="1">
+                                <tree>
+                                    <field name="product_tmpl_id"/>
+                                    <field name="code"/>
+                                    <field name="product_qty"/>
+                                    <field name="type"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_engineering_team" model="ir.actions.act_window">
+        <field name="name">Engineering Analysis</field>
+        <field name="res_model">engineering.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_engineering_root" name="Engineering" sequence="10"/>
+    <menuitem id="menu_engineering_analysis"
+              name="Analysis"
+              parent="menu_engineering_root"
+              action="action_engineering_team"/>
+</odoo>

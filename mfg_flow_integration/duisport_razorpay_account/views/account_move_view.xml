@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_move_form_duisport_razorpay" model="ir.ui.view">
+        <field name="name">account.move.form.duisport.razorpay</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+
+                <button name="action_pay_with_razorpay"
+                        type="object"
+                        string="Pay With Razorpay"
+                        class="btn btn-primary"
+                        modifiers="{'invisible': ['|', ['state', '!=', 'posted'], ['payment_state', '=', 'paid']]}"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

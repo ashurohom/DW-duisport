@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This file specifically handles the manufacturing view inheritance -->
+    <record id="view_dw_mrp_requisition_form_manufacturing_inherit" model="ir.ui.view">
+        <field name="name">dw.mrp.requisition.form.manufacturing.inherit</field>
+        <field name="model">dw.mrp.requisition</field>
+        <field name="inherit_id" ref="dw_Stock_requisition.view_dw_mrp_requisition_form"/>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <!-- Hide the entire location section for manufacturing users -->
+            <xpath expr="//group[./group/field[@name='source_location_id']]" position="replace">
+                <group style="display: none;">
+                    <group>
+                        <field name="source_location_id"/>
+                        <field name="destination_location_id"/>
+                    </group>
+                    <group>
+                        <field name="requested_location_id"/>
+                        <field name="internal_transfer_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

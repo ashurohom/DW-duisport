@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="dw__stock_requisition.list">
+      <field name="name">dw_Stock_requisition list</field>
+      <field name="model">dw__stock_requisition.dw__stock_requisition</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="dw__stock_requisition.action_window">
+      <field name="name">dw_Stock_requisition window</field>
+      <field name="res_model">dw__stock_requisition.dw__stock_requisition</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="dw__stock_requisition.action_server">
+      <field name="name">dw_Stock_requisition server</field>
+      <field name="model_id" ref="model_dw__stock_requisition_dw__stock_requisition"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="dw_Stock_requisition" id="dw__stock_requisition.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="dw__stock_requisition.menu_1" parent="dw__stock_requisition.menu_root"/>
+    <menuitem name="Menu 2" id="dw__stock_requisition.menu_2" parent="dw__stock_requisition.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="dw__stock_requisition.menu_1_list" parent="dw__stock_requisition.menu_1"
+              action="dw__stock_requisition.action_window"/>
+    <menuitem name="Server to list" id="dw__stock_requisition" parent="dw__stock_requisition.menu_2"
+              action="dw__stock_requisition.action_server"/>
+-->
+  </data>
+</odoo>

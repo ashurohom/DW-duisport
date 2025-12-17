@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template name="duisport_razorpay_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- This is empty for now, add assets when needed -->
+        </xpath>
+    </template>
+</odoo>

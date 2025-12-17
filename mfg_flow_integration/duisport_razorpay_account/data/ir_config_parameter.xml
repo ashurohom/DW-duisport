@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Razorpay Key ID -->
+    <record id="duisport_razorpay_key_id" model="ir.config_parameter">
+        <field name="key">duisport_razorpay.key_id</field>
+        <field name="value">rzp_test_2zJjEbeRT0fAQQ</field>
+    </record>
+
+    <!-- Razorpay Key Secret -->
+    <record id="duisport_razorpay_key_secret" model="ir.config_parameter">
+        <field name="key">duisport_razorpay.key_secret</field>
+        <field name="value">4tEfDY2fzqhAENnHpl7S03L2</field>
+    </record>
+
+</odoo>

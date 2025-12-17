@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Razorpay Checkout Page -->
+  <template id="razorpay_checkout" name="Razorpay Checkout">
+    <t t-call="web.layout">
+      <t t-set="head">
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      </t>
+
+      <div class="container mt16">
+        <h4>Redirecting to Razorpay...</h4>
+        <div t-if="is_test_mode" class="alert alert-warning">
+          <strong>TEST MODE:</strong> Using Razorpay test environment
+        </div>
+        <p>Please wait — the Razorpay Payment Window will open automatically.</p>
+        <button id="open-checkout" class="btn btn-primary">Open Checkout</button>
+      </div>
+
+      <script>
+        function openRazorpay() {
+          var options = {
+            "key": "<t t-esc='rzp_key'/>",
+            "amount": parseInt("<t t-esc='amount'/>"),
+            "currency": "<t t-esc='currency'/>",
+            "order_id": "<t t-esc='order_id'/>",
+            "name": "Duisport",
+            "description": "Invoice Payment",
+            "handler": function (response) {
+              fetch('/razorpay/confirm', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                  invoice_id: "<t t-esc='invoice.id'/>"
+                })
+              })
+              .then(function(res) { return res.json(); })
+              .then(function(data) {
+                if (data.success) {
+                  window.location = "/web#id=<t t-esc='invoice.id'/>&amp;model=account.move&amp;view_type=form";
+                } else {
+                  alert("Payment failed: " + (data.error || ""));
+                }
+              });
+            }
+          };
+          var rzp = new Razorpay(options);
+          rzp.open();
+        }
+
+        document.getElementById('open-checkout').addEventListener('click', openRazorpay);
+        setTimeout(openRazorpay, 1000);
+      </script>
+
+    </t>
+  </template>
+
+  <!-- Error Page -->
+  <template id="payment_error" name="Payment Error">
+    <t t-call="web.layout">
+      <div class="container mt16">
+        <h4>Payment Error</h4>
+        <p><t t-esc="message"/></p>
+        <a href="/web" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </t>
+  </template>
+
+</odoo>

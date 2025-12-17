@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Manager Group -->
+        <record id="group_res_partner_onboarding_manager" model="res.groups">
+            <field name="name">Customer Onboarding Manager</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+        </record>
+    </data>
+</odoo>
