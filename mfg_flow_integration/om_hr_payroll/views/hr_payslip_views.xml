@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!--Payslip Line -->
+        <!--Payslip Lines Details -->
         <record id="view_hr_payslip_line_tree" model="ir.ui.view">
             <field name="name">hr.payslip.line.tree</field>
             <field name="model">hr.payslip.line</field>
