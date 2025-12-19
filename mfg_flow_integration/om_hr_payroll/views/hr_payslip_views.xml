@@ -46,7 +46,7 @@
                 </form>
             </field>
         </record>
-
+<!-- Payslip Lines Filters -->
         <record id="view_hr_payslip_line_filter" model="ir.ui.view">
             <field name="name">hr.payslip.line.select</field>
             <field name="model">hr.payslip.line</field>
