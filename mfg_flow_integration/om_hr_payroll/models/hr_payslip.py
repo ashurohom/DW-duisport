@@ -186,6 +186,13 @@ class HrPayslip(models.Model):
             },
         }
 
+
+
+    # def action_add_department(self):
+    #     for rec in self:
+    #         rec.x_department_id = rec.employee_id.department_id
+    #     return True
+
 #----------------------------------------------------------------
 
 
@@ -538,7 +545,7 @@ class HrPayslip(models.Model):
             return
         self.struct_id = self.contract_id.struct_id
 
-        self.x_department_id = self.employee_id.department_id
+        # self.x_department_id = self.employee_id.department_id
         
 
 
